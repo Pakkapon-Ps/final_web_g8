@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -21,3 +22,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+=======
+backend/serviceAccountKey.json.json
+>>>>>>> 1c714966b3bc569e7d70c61292070c16897ad3f6
