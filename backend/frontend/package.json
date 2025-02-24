@@ -8,7 +8,9 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.9",
+    "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.3",
+    "firebase": "^11.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
@@ -41,5 +43,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://github.com/Pakkapon-Ps/final_web_g8.git"
+  "homepage": "https://Pakkapon-Ps.github.io/final_web_g8",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }

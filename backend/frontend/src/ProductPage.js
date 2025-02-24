@@ -1,30 +1,45 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { db } from './Firebase';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
+  const [newProduct, setNewProduct] = useState('');
+
+  const fetchProducts = async () => {
+    const productCollection = collection(db, 'products');
+    const productSnapshot = await getDocs(productCollection);
+    const productList = productSnapshot.docs.map(doc => doc.data());
+    setProducts(productList);
+  };
+
+  const handleAddProduct = async () => {
+    if (newProduct.trim()) {
+      await addDoc(collection(db, 'products'), { name: newProduct });
+      setNewProduct('');
+      fetchProducts(); // Refresh the product list
+    }
+  };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/products").then((res) => setProducts(res.data));
+    fetchProducts();
   }, []);
 
   return (
-    <div className="container mt-4">
-      <h2>สินค้า</h2>
-      <div className="row">
-        {products.map((p) => (
-          <div key={p.id} className="col-md-4">
-            <div className="card">
-              <img src={p.image} className="card-img-top" alt={p.name} />
-              <div className="card-body">
-                <h5 className="card-title">{p.name}</h5>
-                <p className="card-text">{p.price} บาท</p>
-                <button className="btn btn-primary">เพิ่มลงตะกร้า</button>
-              </div>
-            </div>
-          </div>
+    <div>
+      <h2>Products</h2>
+      <input 
+        type="text" 
+        value={newProduct} 
+        onChange={(e) => setNewProduct(e.target.value)} 
+        placeholder="New product name" 
+      />
+      <button onClick={handleAddProduct}>Add Product</button>
+      <ul>
+        {products.map((product, index) => (
+          <li key={index}>{product.name}</li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

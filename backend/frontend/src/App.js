@@ -1,11 +1,15 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProductPage from "./ProductPage";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './LoginPage';
+import ProductPage from './ProductPage';
+import Navbar from './Navbar';
 
 const App = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
+        <Route path="/" element={<LoginPage />} />
         <Route path="/" element={<ProductPage />} />
       </Routes>
     </Router>
